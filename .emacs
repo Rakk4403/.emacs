@@ -25,3 +25,5 @@
 
 ; projectile
 (require 'projectile)
+;; turn on projectile
+(projectile-global-mode)
