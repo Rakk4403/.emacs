@@ -1,6 +1,6 @@
 ;; listup packages required
 (setq package-list '(auto-complete
-					 projectile))
+                     projectile))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -30,5 +30,6 @@
 
 ;; indentations
 (setq-default c-basic-offset 4
-			  tab-width 4)
+              tab-width 4
+			  indent-tabs-mode nil)  ;; indent with spaces
 
