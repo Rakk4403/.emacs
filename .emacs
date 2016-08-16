@@ -1,29 +1,34 @@
-; listup packages required
+;; listup packages required
 (setq package-list '(auto-complete
-		     projectile))
-		     
-; add melpa, marmalade
+					 projectile))
+
+;; add melpa, marmalade
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-; fetch the list of packages available
+;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+;; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-; start auto-complete with emacs
+;; start auto-complete with emacs
 (require 'auto-complete)
-;do default config for auto-complete
+;; do default config for auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
 
-; projectile
+;; projectile
 (require 'projectile)
 ;; turn on projectile
 (projectile-global-mode)
+
+;; indentations
+(setq-default c-basic-offset 4
+			  tab-width 4)
+
