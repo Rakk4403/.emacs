@@ -64,7 +64,7 @@
  ;; If there is more than one, they won't work right.
  '(global-wakatime-mode t)
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
- '(wakatime-api-key "47044d0e-948b-4d94-b88b-e1d3389fed4a")
+ '(wakatime-api-key "")
  '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(wakatime-python-bin "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python"))
 (custom-set-faces
