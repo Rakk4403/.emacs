@@ -120,3 +120,14 @@
 
 ;; speedbar setting
 (setq speedbar-show-unknown-files t)
+
+
+;; company settings
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; settings for company mode with Clang
+;; (setq company-backends (delete 'company-semantic company-backends))
+;; (define-key c-mode-map [(tab)] 'company-complete)
+;; (define-key c++-mode-map [(tab)] 'company-complete)
+
