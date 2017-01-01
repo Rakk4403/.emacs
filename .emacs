@@ -3,7 +3,9 @@
                      projectile
                      cmake-mode
                      wakatime-mode
-                     sr-speedbar))
+                     sr-speedbar
+                     company
+                     company-c-headers))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -131,3 +133,8 @@
 ;; (define-key c-mode-map [(tab)] 'company-complete)
 ;; (define-key c++-mode-map [(tab)] 'company-complete)
 
+;; company-c-headers settings
+(add-to-list 'company-backends 'company-c-headers)
+;; if needed custom path, use below
+;; (add-to-list 'company-c-headers-path-system "/usr/include/somewhere/")
+;; if use project local(.dir-locals.el), use "company-c-headers-path-user" instead of "-system"
