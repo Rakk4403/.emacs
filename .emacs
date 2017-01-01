@@ -138,3 +138,13 @@
 ;; if needed custom path, use below
 ;; (add-to-list 'company-c-headers-path-system "/usr/include/somewhere/")
 ;; if use project local(.dir-locals.el), use "company-c-headers-path-user" instead of "-system"
+
+
+;; gdb settings
+(setq
+ ;; use gdb-many-windows by default
+ gdb-many-windows t
+
+ ;; Non-nil means display source file containing the main routine at startup
+ gdb-show-main t
+ )
