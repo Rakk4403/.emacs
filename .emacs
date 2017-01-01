@@ -2,7 +2,8 @@
 (setq package-list '(auto-complete
                      projectile
                      cmake-mode
-                     wakatime-mode))
+                     wakatime-mode
+                     sr-speedbar))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -115,3 +116,7 @@
 ;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
 ;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
 ;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+
+
+;; speedbar setting
+(setq speedbar-show-unknown-files t)
