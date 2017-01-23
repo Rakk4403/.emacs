@@ -5,7 +5,11 @@
                      wakatime-mode
                      sr-speedbar
                      company
-                     company-c-headers))
+                     company-c-headers
+                     ggtags
+                     smart-tabs-mode
+                     ecb
+                     color-theme-solarized))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -148,3 +152,6 @@
  ;; Non-nil means display source file containing the main routine at startup
  gdb-show-main t
  )
+
+(require 'color-theme)
+(color-theme-solarized)
