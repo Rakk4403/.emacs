@@ -73,7 +73,7 @@
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
  '(wakatime-api-key "")
  '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(wakatime-python-bin "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python"))
+ '(wakatime-python-bin "/usr/bin/python"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -155,3 +155,8 @@
 
 (require 'color-theme)
 (color-theme-solarized)
+(put 'narrow-to-region 'disabled nil)
+
+;; transparent window
+(set-frame-parameter (selected-frame) 'alpha '(85 65))
+(add-to-list 'default-frame-alist '(alpha 85 65))
