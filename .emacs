@@ -5,7 +5,11 @@
                      wakatime-mode
                      sr-speedbar
                      company
-                     company-c-headers))
+                     company-c-headers
+                     ggtags
+                     smart-tabs-mode
+                     ecb
+                     color-theme-solarized))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -157,3 +161,12 @@
        auto-mode-alist))
 
 (autoload 'cmake-mode "~/.emacs.d/elpa/cmake-mode-20110824/cmake-mode.el" t)
+=======
+(require 'color-theme)
+(color-theme-solarized)
+(put 'narrow-to-region 'disabled nil)
+
+;; transparent window
+(set-frame-parameter (selected-frame) 'alpha '(85 65))
+(add-to-list 'default-frame-alist '(alpha 85 65))
+>>>>>>> aeab98deada01750fbb45c87b9cb941111440a3d
