@@ -67,7 +67,6 @@
  ;; If there is more than one, they won't work right.
  '(global-wakatime-mode t)
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
- '(wakatime-api-key "")
  '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(wakatime-python-bin "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python"))
 (custom-set-faces
@@ -148,3 +147,13 @@
  ;; Non-nil means display source file containing the main routine at startup
  gdb-show-main t
  )
+
+
+;; Add cmake listfile names to the mode list.
+(setq auto-mode-alist
+      (append
+       '(("CMakeLists\\.txt\\'" . cmake-mode))
+       '(("\\.cmake\\'" . cmake-mode))
+       auto-mode-alist))
+
+(autoload 'cmake-mode "~/.emacs.d/elpa/cmake-mode-20110824/cmake-mode.el" t)
