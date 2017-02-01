@@ -170,9 +170,18 @@
 (set-frame-parameter (selected-frame) 'alpha '(85 65))
 (add-to-list 'default-frame-alist '(alpha 85 65))
 
+;; smooth scrolling
 (use-package smooth-scrolling
-             :init
-             (setq scroll-margin 5
-                   scroll-conservatively 9999
-                   scroll-step 1)
-             )
+  :init
+  (setq scroll-margin 5
+        scroll-conservatively 9999
+        scroll-step 1)
+  )
+
+;; numbering find results
+(use-package anzu
+  :ensure t
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode +1))
