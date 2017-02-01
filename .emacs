@@ -10,7 +10,11 @@
                      ggtags
                      smart-tabs-mode
                      ecb
-                     color-theme-solarized))
+                     color-theme-solarized
+                     smooth-scrolling
+                     which-key
+                     js2-mode
+                     ))
 
 ;; add melpa, marmalade
 (require 'package)
@@ -185,3 +189,13 @@
          ("C-M-%" . anzu-query-replace-regexp))
   :config
   (global-anzu-mode +1))
+
+
+(use-package which-key
+  :config
+  (which-key-mode))
+
+
+(use-package js2-mode
+  :config
+  (js2-mode))
