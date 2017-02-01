@@ -1,5 +1,6 @@
 ;; listup packages required
-(setq package-list '(auto-complete
+(setq package-list '(use-package
+                     auto-complete
                      projectile
                      cmake-mode
                      wakatime-mode
@@ -169,3 +170,9 @@
 (set-frame-parameter (selected-frame) 'alpha '(85 65))
 (add-to-list 'default-frame-alist '(alpha 85 65))
 
+(use-package smooth-scrolling
+             :init
+             (setq scroll-margin 5
+                   scroll-conservatively 9999
+                   scroll-step 1)
+             )
