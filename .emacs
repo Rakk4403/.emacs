@@ -10,7 +10,7 @@
                      ggtags
                      smart-tabs-mode
                      ecb
-                     color-theme-solarized
+                     ;; color-theme-solarized
                      smooth-scrolling
                      which-key
                      js2-mode
@@ -18,6 +18,8 @@
                      counsel
                      swiper
                      magit
+                     pyenv-mode
+                     multi-term
                      ))
 
 ;; add melpa, marmalade
@@ -170,8 +172,8 @@
 
 (autoload 'cmake-mode "~/.emacs.d/elpa/cmake-mode-20110824/cmake-mode.el" t)
 
-(require 'color-theme)
-(color-theme-solarized)
+;; (require 'color-theme)
+;; (color-theme-solarized)
 (put 'narrow-to-region 'disabled nil)
 
 ;; transparent window
@@ -226,3 +228,19 @@
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+
+
+;; pyenv-mode
+(pyenv-mode)
+
+;; C-c p p activates pyenv-mode in projectile
+(require 'pyenv-mode)
+
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name."
+  (let ((project (projectile-project-name)))
+    (if (member project (pyenv-mode-versions))
+        (pyenv-mode-set project)
+      (pyenv-mode-unset))))
+
+(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
