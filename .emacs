@@ -80,7 +80,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (wombat)))
  '(global-wakatime-mode t)
+ '(package-selected-packages
+   (quote
+    (color-theme-monokai anzu multi-term pyenv-mode magit counsel ivy js2-mode which-key smooth-scrolling ecb smart-tabs-mode ggtags company-c-headers company sr-speedbar wakatime-mode cmake-mode projectile auto-complete use-package)))
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
  '(wakatime-cli-path "/usr/local/bin/wakatime")
  '(wakatime-python-bin "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python"))
