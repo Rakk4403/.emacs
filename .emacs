@@ -14,12 +14,17 @@
                      smooth-scrolling
                      which-key
                      js2-mode
+                     ac-js2
                      ivy
                      counsel
                      swiper
                      magit
                      pyenv-mode
                      multi-term
+                     flycheck
+                     json-mode
+                     web-mode
+                     exec-path-from-shell
                      ))
 
 ;; add melpa, marmalade
@@ -50,6 +55,7 @@
 
 ;; indentations
 (setq-default c-basic-offset 4
+              js-indent-level 2
               tab-width 4
 			  indent-tabs-mode nil)  ;; indent with spaces
 
@@ -84,10 +90,10 @@
  '(global-wakatime-mode t)
  '(package-selected-packages
    (quote
-    (color-theme-monokai anzu multi-term pyenv-mode magit counsel ivy js2-mode which-key smooth-scrolling ecb smart-tabs-mode ggtags company-c-headers company sr-speedbar wakatime-mode cmake-mode projectile auto-complete use-package)))
+    (exec-path-from-shell web-mode json-mode tern tern-auto-complete flycheck color-theme-monokai anzu multi-term pyenv-mode magit counsel ivy js2-mode which-key smooth-scrolling ecb smart-tabs-mode ggtags company-c-headers company sr-speedbar wakatime-mode cmake-mode projectile auto-complete use-package)))
  '(safe-local-variable-values (quote ((eval highlight-regexp "^ *"))))
- '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(wakatime-python-bin "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python"))
+ '(wakatime-cli-path "/home/chris/.local/bin/wakatime")
+ '(wakatime-python-bin "/usr/bin/python"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -248,3 +254,26 @@
       (pyenv-mode-unset))))
 
 (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
+
+;; jshint with flycheck
+(require 'flycheck)
+(add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
+
+;; json auto mode
+(add-to-list 'auto-mode-alist'("\\.json$" . js-mode))
+
+;; js2 auto load
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+;; ac-js2 settings
+(setq js2-highlight-level 3)
+
+;; tern settings
+(require 'tern)
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
