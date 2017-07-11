@@ -25,6 +25,8 @@
                      json-mode
                      web-mode
                      exec-path-from-shell
+                     tern
+                     tern-auto-complete
                      ))
 
 ;; add melpa, marmalade
@@ -255,11 +257,38 @@
 
 (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
 
+
+
 ;; jshint with flycheck
 (require 'flycheck)
-(add-hook 'js-mode-hook
-          (lambda () (flycheck-mode t)))
+;; terun on flycheck globally
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
+;;(add-hook 'js-mode-hook
+;;          (lambda () (flycheck-mode t)))
+;; disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint)))
+;; use eslint with web-mode for jsx files
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;; customize flycheck temp file prefix
+(setq-default flycheck-temp-prefix ".flycheck")
+
+;; disable json-jsonlist checking for json files
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(json-jsonlist)))
+
+;; https://github.com/purcell/exec-path-from-shell
+;; only need exec-path-from-shell on OSX
+;; this hupefully sets up path and other vars better
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+
+              
 ;; json auto mode
 (add-to-list 'auto-mode-alist'("\\.json$" . js-mode))
 
@@ -277,3 +306,8 @@
   '(progn
      (require 'tern-auto-complete)
      (tern-ac-setup)))
+
+
+;; use web-mode for .jsx files
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+
