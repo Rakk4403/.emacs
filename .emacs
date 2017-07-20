@@ -61,12 +61,14 @@
               tab-width 4
 			  indent-tabs-mode nil)  ;; indent with spaces
 
-(smart-tabs-insinuate 'c 'c++ 'python 'javascript)
-(smart-tabs-advice python-indent-line-1 python-indent)
+(smart-tabs-insinuate 'c 'c++ 'javascript)
+;;(smart-tabs-advice python-indent-line-1 python-indent)
 (add-hook 'python-mode-hook
           (lambda ()
-            (setq indent-tabs-mode nil)
-                            (setq tab-width (default-value 'tab-width))))
+            (setq tab-width (default-value 'tab-width))))
+
+;; c++-mode for .h
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; ecb-settings
 (require 'ecb)
@@ -164,6 +166,9 @@
 ;; if needed custom path, use below
 ;; (add-to-list 'company-c-headers-path-system "/usr/include/somewhere/")
 ;; if use project local(.dir-locals.el), use "company-c-headers-path-user" instead of "-system"
+
+;; setup CEDET for removing no clang error in linux
+(semantic-mode 1)
 
 
 ;; gdb settings
@@ -322,7 +327,8 @@
 (add-to-list 'auto-mode-alist'("\\.json$" . js-mode))
 
 ;; js2 auto load
-(add-hook 'js-mode-hook 'js2-minor-mode)
+;; disable minor-mode by using eslint
+;;(add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 
 ;; ac-js2 settings
