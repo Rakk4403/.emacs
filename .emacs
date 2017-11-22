@@ -29,6 +29,8 @@
                      tern-auto-complete
                      elpy
                      rjsx-mode
+                     docker
+                     dockerfile-mode
                      ))
 
 ;; add melpa, marmalade
