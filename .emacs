@@ -27,6 +27,7 @@
                      exec-path-from-shell
                      tern
                      tern-auto-complete
+                     ace-window
                      ))
 
 ;; add melpa, marmalade
@@ -346,3 +347,5 @@
 ;; use web-mode for .jsx files
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 
+;; ace-window
+(global-set-key (kbd "C-x o") 'ace-window)
