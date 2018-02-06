@@ -27,6 +27,10 @@
                      exec-path-from-shell
                      tern
                      tern-auto-complete
+                     elpy
+                     rjsx-mode
+                     docker
+                     dockerfile-mode
                      ace-window
                      ))
 
@@ -270,14 +274,15 @@
 ;; terun on flycheck globally
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;(add-hook 'js-mode-hook
-;;          (lambda () (flycheck-mode t)))
+(add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
 ;; disable jshint since we prefer eslint checking
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
                       '(javascript-jshint)))
 ;; use eslint with web-mode for jsx files
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
 ;; customize flycheck temp file prefix
 (setq-default flycheck-temp-prefix ".flycheck")
@@ -343,9 +348,8 @@
      (require 'tern-auto-complete)
      (tern-ac-setup)))
 
-
 ;; use web-mode for .jsx files
-(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
 
 ;; ace-window
 (global-set-key (kbd "C-x o") 'ace-window)
