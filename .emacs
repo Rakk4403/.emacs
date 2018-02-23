@@ -8,7 +8,6 @@
                      company
                      company-c-headers
                      ggtags
-                     smart-tabs-mode
                      ecb
                      ;; color-theme-solarized
                      smooth-scrolling
@@ -66,8 +65,6 @@
               tab-width 4
 			  indent-tabs-mode nil)  ;; indent with spaces
 
-(smart-tabs-insinuate 'c 'c++ 'javascript)
-;;(smart-tabs-advice python-indent-line-1 python-indent)
 (add-hook 'python-mode-hook
           (lambda ()
             (setq tab-width (default-value 'tab-width))))
