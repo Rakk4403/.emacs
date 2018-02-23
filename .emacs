@@ -63,10 +63,10 @@
 (projectile-global-mode)
 
 ;; indentations
-(setq-default c-basic-offset 4
+(setq-default c-basic-offset 2
               js-indent-level 2
               tab-width 4
-			  indent-tabs-mode nil)  ;; indent with spaces
+              indent-tabs-mode nil)  ;; indent with spaces
 
 (add-hook 'python-mode-hook
           (lambda ()
@@ -74,6 +74,9 @@
 
 ;; c++-mode for .h
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-hook 'c-mode-common-hook
+           (lambda ()
+             (setq-default indent-tabs-mode nil)))
 
 ;; ecb-settings
 (require 'ecb)
