@@ -39,6 +39,9 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+;; elpy mode (for python)
+(elpy-enable)
+
 ;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
@@ -347,6 +350,10 @@
 
 ;; use web-mode for .jsx files
 (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
+
+;; python
+(add-to-list 'auto-mode-alist '("\\.py$" . elpy-mode))
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 
 ;; ace-window
 (global-set-key (kbd "C-x o") 'ace-window)
