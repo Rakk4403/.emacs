@@ -31,6 +31,7 @@
                      docker
                      dockerfile-mode
                      ace-window
+                     direnv
                      ))
 
 ;; add melpa, marmalade
@@ -361,6 +362,15 @@
 
 ;; ace-window
 (global-set-key (kbd "C-x o") 'ace-window)
+;; direnv
+(direnv-mode)
+
+;; pipenv
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+
 ;; lsp-mode
 (use-package lsp-mode
   :config
