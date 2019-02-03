@@ -60,7 +60,8 @@
 ;; projectile
 (require 'projectile)
 ;; turn on projectile
-(projectile-global-mode)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; indentations
 (setq-default c-basic-offset 2
