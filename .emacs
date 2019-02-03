@@ -52,10 +52,10 @@
     (package-install package)))
 
 ;; start auto-complete with emacs
-(require 'auto-complete)
+;;(require 'auto-complete)
 ;; do default config for auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
+;;(require 'auto-complete-config)
+;;(ac-config-default)
 
 ;; projectile
 (require 'projectile)
@@ -80,7 +80,7 @@
              (setq-default indent-tabs-mode nil)))
 
 ;; ecb-settings
-(require 'ecb)
+;;(require 'ecb)
 ;; if just want, just
 ;; (require 'ecb)
 
@@ -361,3 +361,11 @@
 
 ;; ace-window
 (global-set-key (kbd "C-x o") 'ace-window)
+;; lsp-mode
+(use-package lsp-mode
+  :config
+  (require 'lsp-clients)
+  (add-hook 'python-mode-hook 'lsp))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
