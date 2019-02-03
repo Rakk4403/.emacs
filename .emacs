@@ -1,3 +1,6 @@
+;;; package --- summary:
+;;; Commentary:
+;;; Code:
 ;; listup packages required
 (setq package-list '(use-package
                      auto-complete
