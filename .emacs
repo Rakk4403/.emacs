@@ -400,5 +400,23 @@
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
 
+
+;; etc
+
+;; MacOS settings
+(when (string= system-type "darwin")
+  (setq dired-use-ls-dired nil))
+
+;; to remove Your ‘python-shell-interpreter’ doesn’t seem to support readlin
+(with-eval-after-load 'python
+  (defun python-shell-completion-native-try ()
+    "Return non-nil if can trigger native completion."
+    (let ((python-shell-completion-native-enable t)
+          (python-shell-completion-native-output-timeout
+           python-shell-completion-native-try-output-timeout))
+      (python-shell-completion-native-get-completions
+       (get-buffer-process (current-buffer))
+       nil "_"))))
+
 (provide '.emacs)
 ;;; .emacs ends here
