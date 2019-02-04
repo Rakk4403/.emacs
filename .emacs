@@ -394,7 +394,8 @@
 (use-package lsp-mode
   :config
   (require 'lsp-clients)
-  (add-hook 'python-mode-hook 'lsp))
+  (add-hook 'python-mode-hook 'lsp)
+  (add-hook 'python-mode-hook 'flycheck-mode))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
