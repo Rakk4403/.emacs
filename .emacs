@@ -35,6 +35,10 @@
                      dockerfile-mode
                      ace-window
                      direnv
+		             lsp-mode
+                     lsp-ui
+                     ccls
+                     company-lsp
                      ))
 
 ;; add melpa, marmalade
@@ -396,6 +400,19 @@
   (require 'lsp-clients)
   (add-hook 'python-mode-hook 'lsp)
   (add-hook 'python-mode-hook 'flycheck-mode))
+;; cquery
+;;(require 'cquery)
+;;(setq cquery-executable "/usr/local/bin/cquery")
+;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
+
+;;(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
+
+;; ccls
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
+(setq ccls-executable "/usr/local/bin/ccls")
+
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
