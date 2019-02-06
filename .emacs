@@ -47,9 +47,6 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-;; elpy mode (for python)
-(elpy-enable)
-
 ;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
@@ -58,6 +55,9 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; elpy mode (for python)
+(elpy-enable)
 
 ;; start auto-complete with emacs
 ;;(require 'auto-complete)
