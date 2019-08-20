@@ -284,8 +284,6 @@
 ;; jshint with flycheck
 (require 'flycheck)
 ;; terun on flycheck globally
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
 ;; disable jshint since we prefer eslint checking
@@ -303,6 +301,12 @@
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
                       '(json-jsonlist)))
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(global-flycheck-mode 1)
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+
 
 ;; https://github.com/purcell/exec-path-from-shell
 ;; only need exec-path-from-shell on OSX
@@ -371,20 +375,23 @@
 (global-set-key (kbd "C-x o") 'ace-window)
 
 
+
 ;; mypy
-(flycheck-define-checker
-    python-mypy ""
-    :command ("mypy"
-              "--ignore-missing-imports" "--fast-parser"
-              "--python-version" "3.5"
-              source-original)
-    :error-patterns
-    ((error line-start (file-name) ":" line ": error:" (message) line-end))
-    :modes python-mode)
+;; (flycheck-define-checker
+;;     python-mypy ""
+;;     :command ("mypy"
+;;               "--ignore-missing-imports" "--fast-parser"
+;;               "--python-version" "3.5"
+;;               source-original)
+;;     :error-patterns
+;;     ((error line-start (file-name) ":" line ": error:" (message) line-end))
+;;     :modes python-mode)
 
-(add-to-list 'flycheck-checkers 'python-mypy t)
-(flycheck-add-next-checker 'python-pylint 'python-mypy t)
-
+;;(add-to-list 'flycheck-checkers 'python-mypy t)
+;;(flycheck-add-next-checker 'python-flake8 'python-mypy t)
+(add-to-list 'flycheck-checkers 'python-pycheckers t)
+(add-to-list 'flycheck-checkers 'lsp-ui t)
+;;(add-to-list 'flycheck-checkers 'python-flake8)
 ;; direnv
 (direnv-mode)
 
@@ -396,10 +403,15 @@
 
 ;; lsp-mode
 (use-package lsp-mode
-  :config
-  (require 'lsp-clients)
-  (add-hook 'python-mode-hook 'lsp)
-  (add-hook 'python-mode-hook 'flycheck-mode))
+  :hook (python-mode . lsp)
+  :commands lsp)
+
+(setq lsp-pyls-plugins-pylint-enabled nil)
+;;(setq lsp-pyls-plugins-pycodestyle-enabled nil)
+;;(setq lsp-pyls-plugins-pyflakes-enabled nil)
+
+(add-hook 'python-mode-hook 'flycheck-mode)
+;; (add-hook 'python-mode-hook 'lsp)
 ;; cquery
 ;;(require 'cquery)
 ;;(setq cquery-executable "/usr/local/bin/cquery")
@@ -407,15 +419,16 @@
 
 ;;(setq cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack"))
 
+
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+
 ;; ccls
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 (setq ccls-executable "/usr/local/bin/ccls")
-
-
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
 
 
 ;; etc
